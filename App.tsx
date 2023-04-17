@@ -1,118 +1,127 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import * as React from 'react';
+import { View, Text, Button, Image, StyleSheet, TextInput } from "react-native";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import LoginScreen from "./components/LoginScreen";
+const LogoColour = '#08f7c9';
+const ScreenBackgroundColor = '#08126d';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 10,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: ScreenBackgroundColor,
+  },
+  pagetitle: {
+    alignItems: 'center',
+    color: 'white',
+    backgroundColor: '#ff0000',
+    fontSize: 20,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  logo: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  byline: {
+    marginTop: 20,
+    marginBottom: 20,
+    color: LogoColour,
+  },
+});
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const HomeScreen = ({navigation}) => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      {/*<View style={styles.pagetitle}>
+        <Text>Home Screen</Text>
+      </View>*/}
+      <View>
+        <Image
+          style={styles.logo}
+          source={require('./assets/Images/BannerLogo.png')}
+        />
+      </View>
+      <View style={styles.byline}>
+        <Text style={styles.byline}>THE FRAUD-FREE, SECURE PAYMENT PLATFORM</Text>
+      </View>
+      <Button
+        title="Go to Details Screen"
+        onPress={() => navigation.navigate('LoginScreen')}
+      />
+    </View>
+  );
+};
+
+const DetailsScreen = ({navigation}) => {
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+      <Button
+        title="Go to Details Screen 2"
+        onPress={() => navigation.navigate('Details2')}
+      />
+    </View>
+  );
+};
+
+function DetailsScreen2() {
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Details Screen 2</Text>
     </View>
   );
 }
 
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+/*const LoginScreen = ({navigation}) => {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View>
+        <View>
+          <Image
+            style={styles.logo}
+            source={require('./assets/Images/BannerLogo.png')}
+          />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <View style={styles.byline}>
+          <Text style={styles.byline}>THE FRAUD-FREE, SECURE PAYMENT PLATFORM</Text>
+        </View>
+      </View>
+      <View>
+        <Text>Sign in</Text>
+        <TextInput placeholder={'User name'} />
+        <TextInput placeholder={'Password'} />
+      </View>
+      <Button
+        title="Go to Details Screen 2"
+        onPress={() => navigation.navigate('Details2')}
+      />
+    </View>
   );
-}
+};*/
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
+const Stack = createNativeStackNavigator();
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Shore Fund" component={HomeScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Details2" component={DetailsScreen2} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+//      <Stack.Screen name="Login" component={loginScreen} />
 export default App;
