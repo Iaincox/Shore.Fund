@@ -1,7 +1,8 @@
 import * as React from "react";
-import { View, Text, Button, Image, StyleSheet, TextInput } from "react-native";
+import { View, Text, Image, StyleSheet, TextInput } from "react-native";
 
 import PageHeader from "./PageHeader";
+import Button from "./Button";
 //import {NavigationContainer} from '@react-navigation/native';
 //import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -17,94 +18,72 @@ const styles = StyleSheet.create({
     backgroundColor: ScreenBackgroundColor,
   },
   loginPane: {
-    color: 'white',
-   // backgroundColor: 'powderblue',
+    color: "white",
+    // backgroundColor: 'powderblue',
     //ralignItems: 'flex-start',
-   // justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
     marginLeft: 5,
     paddingLeft: 15,
   },
   loginPaneTxt: {
-    color: 'white',
+    color: "white",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   textInput: {
     borderStyle: "solid",
     borderWidth: 2,
-    borderColor: '#cccccc',
-    width: '90%',
+    borderColor: "#cccccc",
+    width: "90%",
     marginTop: 20,
     marginBottom: 20,
     fontSize: 20,
     fontStyle: "normal",
-    backgroundColor: 'white',
-    padding:5,
+    backgroundColor: "white",
+    padding: 5,
   },
   textRight: {
-    color: 'white',
+    color: "white",
     alignItems: "flex-end",
     marginRight: 28,
   },
   signInView: {
-    marginTop:15,
-    marginBottom:15,
-    width: '90%',
+    flex: 1,
+    marginTop: 15,
+    marginBottom: 15,
+    width: "100%",
     height: 40,
+   // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  signInBtn : {
+  signInBtn: {
     backgroundColor: LogoColour,
   },
-
-  // pagetitle: {
-  //   alignItems: "center",
-  //   //justifyContent: 'center',
-  //   /* height: '20%',
-  //    width: '100%',*/
-  //   color: "white",
-  //   backgroundColor: "#ff0000",
-  //   fontSize: 20,
-  // },
- //  logo: {
- //    alignItems: "center",
- //    justifyContent: "center",
- //    marginTop: 20,
- //    marginBottom: 5,
- //    backgroundColor: "teal",
- //  },
-  /* byline: {
-    marginTop: 10,
-    marginBottom: 20,
-    color: LogoColour,
-  },*/
 });
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation}) {
   return (
     <View style={styles.container}>
       <PageHeader />
-
-
-        <View style={styles.loginPane}>
-          <Text style={styles.loginPaneTxt}>Sign in</Text>
-          <TextInput style={styles.textInput} placeholder={"User name"} />
-          <TextInput style={styles.textInput} placeholder={"Password"} />
-        </View>
+      <View style={styles.loginPane}>
+        <Text style={styles.loginPaneTxt}>Sign in</Text>
+        <TextInput style={styles.textInput} placeholder={"User name"} />
+        <TextInput style={styles.textInput} placeholder={"Password"} />
+      </View>
       <View style={styles.textRight}>
         <Text style={styles.textRight}>Forgotten Password</Text>
       </View>
+      {/*<Button>Sign In</Button>*/}
       <View style={styles.signInView}>
-        <Button title={"Sign In"} />
-        <Button title={"Continue with Google"}/>
-        <Button title={"Continue wiht Apple"}/>
+        <Button onPress={SignInPressed} color={LogoColour}>Sign In</Button>
+        <Button>Continue with Google</Button>
+        <Button>Continue with Apple</Button>
       </View>
-       {/* <Button
-          title="Go to Details Screen 2"
-          onPress={() => navigation.navigate("Details2")}
-        />*/}
-
-    </View>
-  );
+    </View>);
 };
 
+function SignInPressed(){
+  alert("pressed");
+}
 //export default LoginScreen;

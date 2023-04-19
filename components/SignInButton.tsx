@@ -1,8 +1,10 @@
-import { Pressable } from "react-native";
+import {Pressable, View} from "react-native";
 
 
-export default function SignInButton({ navigation }) {
-  return(
-    <Pressable
+export default function SignInButton() {
+  return (
+    <View>
+      <Pressable>Sign in</Pressable>
+    </View>
   );
 }
