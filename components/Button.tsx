@@ -1,4 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {Constants} from './conststants';
 
 
 const Colors = {
@@ -7,13 +8,13 @@ const Colors = {
   primary700: '#4e0329',
   primary800: '#3b021f',
   accent500: '#ddb52f',
-  shorefundColor: '#08f7c9',
+  shorefundColor: Constants.shorefundColor,
 };
 
 function Button({children, onPress }) {
   return (
     <Pressable
-      style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+      style={({pressed}) => [styles.button, pressed && styles.pressed]}
       onPress={onPress}
     >
       <View>
