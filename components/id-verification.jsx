@@ -1,19 +1,22 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Switch } from "react-native";
+import { View, Text, Image, StyleSheet, TextInput, Switch } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from '@react-navigation/native';
-
 import Button from "./Button";
 
 import PageHeader2 from "./PageHeader2";
 import { Constants } from "./conststants";
 
+//import ProgressBar from "./ProgressBar";
 import * as Progress from "react-native-progress";
+import { isEnabled, setEnabled } from "react-native/Libraries/Performance/Systrace";
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 5,
     flex: 1,
+    //  alignItems: "center",
+    // justifyContent: "flex-start",
     backgroundColor: "white",
   },
   loginPane: {
@@ -31,18 +34,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   textInput: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 2,
     borderColor: "#cccccc",
     width: "90%",
     marginBottom: 15,
     fontSize: 20,
-    fontStyle: 'normal',
-    backgroundColor: 'white',
+    fontStyle: "normal",
+    backgroundColor: "white",
     padding: 5,
   },
   textLeft: {
-    color: 'grey',
+    color: "grey",
+    //alignItems: "flex-end",
+    // marginRight: 28,
     marginBottom: 1,
     paddingBottom: 1,
   },
@@ -52,62 +57,49 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: "100%",
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "center",
   },
   signInBtn: {
     backgroundColor: Constants.LogoColour,
   },
   DropDown: {
-    width: '90%',
+    width: "90%",
     marginBottom: 15,
   },
   progressStyle: {
 
     flex: 0.05,
-    flexDirection: 'row',
-    width: '90%',
-    alignItems: 'center',
+    flexDirection: "row",
+    width: "90%",
+    alignItems: "center",
+    //backgroundColor: 'red',
     marginLeft: 15,
     marginBottom: 10,
   },
 });
 
-const companyType = [
-  { key: "1", value: "Public limited company (PLC)" },
-  { key: "2", value: "Private company limited by shares (LTD)" },
-  { key: "3", value: "Company limited by guarantee" },
-  { key: "4", value: "Unlimited company (Unltd)" },
-  { key: "5", value: "Limited liability partnership (LLP)" },
-  { key: "6", value: "Community interest company" },
-  { key: "7", value: "Industrial and provident society (IPS)" },
-  { key: "8", value: "Royal charter (RC)" },
-];
 const switchHandler = () => {
   console.log("Switch Handler", isEnabled());
   setIsEnabled(true);
 };
 
-let Nav = null;
+export default function IdVerification({ navigation }) {
 
-export default function SignUpCompanyDetail({ navigation }) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [selected, setSelected] = useState("2");
-
-  Nav = useNavigation();
 
   return (
     <View style={styles.container}>
       <PageHeader2 />
+      {/*  <ProgressBar progress={0.25}/>*/}
       <View style={styles.progressStyle}>
-        <Progress.Bar progress={0.5} height={10} width={325} color={Constants.ScreenBackgroundColor} />
+        <Progress.Bar progress={0.75} height={10} width={325} color={Constants.ScreenBackgroundColor} />
       </View>
       <View style={styles.loginPane}>
-        <Text style={styles.loginPaneTxt}>Company details</Text>
+        <Text style={styles.loginPaneTxt}>ID Verification</Text>
         <Text style={styles.textLeft}>Company name</Text>
         <TextInput style={styles.textInput} placeholder={"Company name"} />
         <Text style={styles.textLeft}>Company type</Text>
-
         <View style={styles.DropDown}>
           <SelectList
             setSelected={(val) => setSelected(val)}
@@ -117,6 +109,7 @@ export default function SignUpCompanyDetail({ navigation }) {
             defaultOption={{ key: "2", value: "Private company limited by shares (LTD)" }}
           />
         </View>
+        {/* <TextInput style={styles.textInput} placeholder={"email"} />*/}
         <View>
           <Text style={styles.textLeft}>Vat Registered</Text>
           <Switch
@@ -127,16 +120,16 @@ export default function SignUpCompanyDetail({ navigation }) {
           />
         </View>
       </View>
-
       <View style={styles.signInView}>
-        <Button onPress={Nav.navigate('LoginScreen')}>Complete</Button>
+        <Button>Continue</Button>
       </View>
     </View>);
 };
 
-
-/*function SignInPressed() {
+/*
+function SignInPressed() {
   alert("pressed");
-}*/
+}
+*/
 
 //export default LoginScreen;

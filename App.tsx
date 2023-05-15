@@ -10,6 +10,7 @@ import LoginScreen from './components/LoginScreen';
 import SignUp1 from './components/SignUp1';
 import Splash from './components/splash';
 import SignUpCompanyDetail from "./components/SignUp2";
+import IdVerification from "./components/id-verification";
 //const LogoColour = '#08f7c9';
 //const ScreenBackgroundColor = '#08126d';
 const BackgroundGreyImage = require('./assets/Images/Background_grey_cube.png');
@@ -104,6 +105,7 @@ const App = () => {
         <Stack.Screen name="Shure Fund" component={HomeScreen} />
         <Stack.Screen name="Sign Up" component={SignUp1} />
         <Stack.Screen name="Company Detail" component={SignUpCompanyDetail} />
+        <Stack.Screen name="ID Verificaion" component={IdVerification} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Details2" component={DetailsScreen2} />
