@@ -1,15 +1,12 @@
-import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TextInput, Switch } from "react-native";
-import { SelectList } from "react-native-dropdown-select-list";
-import { useNavigation } from '@react-navigation/native';
+//import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+
 import Button from "./Button";
 
 import PageHeader2 from "./PageHeader2";
 import { Constants } from "./conststants";
-
-//import ProgressBar from "./ProgressBar";
 import * as Progress from "react-native-progress";
-import { isEnabled, setEnabled } from "react-native/Libraries/Performance/Systrace";
+
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +25,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
   },
   loginPaneTxt: {
+
+    flexDirection: "row",
     color: Constants.ShureFundTitleTextColor,
+    //  backgroundColor: 'blue',
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 20,
@@ -48,25 +48,22 @@ const styles = StyleSheet.create({
     color: "grey",
     //alignItems: "flex-end",
     // marginRight: 28,
-    marginBottom: 1,
+    marginBottom: 10,
     paddingBottom: 1,
   },
   signInView: {
-    flex: 1,
+    flex: 0.5,
     marginTop: 15,
     marginBottom: 15,
     width: "100%",
     height: 40,
-    // backgroundColor: "red",
+    backgroundColor: "red",
     justifyContent: "center",
     alignItems: "center",
   },
   signInBtn: {
     backgroundColor: Constants.LogoColour,
-  },
-  DropDown: {
-    width: "90%",
-    marginBottom: 15,
+    color: "blue",
   },
   progressStyle: {
 
@@ -77,59 +74,22 @@ const styles = StyleSheet.create({
     //backgroundColor: 'red',
     marginLeft: 15,
     marginBottom: 10,
+
+  },
+  govID: {
+    // flex:0.2,
+    height: 80,
+    backgroundColor: Constants.lightGreyBackground,
+    width: "90%",
   },
 });
 
-const switchHandler = () => {
-  console.log("Switch Handler", isEnabled());
-  setIsEnabled(true);
-};
 
 export default function IdVerification({ navigation }) {
-
 
   return (
     <View style={styles.container}>
       <PageHeader2 />
-      {/*  <ProgressBar progress={0.25}/>*/}
-      <View style={styles.progressStyle}>
-        <Progress.Bar progress={0.75} height={10} width={325} color={Constants.ScreenBackgroundColor} />
-      </View>
-      <View style={styles.loginPane}>
-        <Text style={styles.loginPaneTxt}>ID Verification</Text>
-        <Text style={styles.textLeft}>Company name</Text>
-        <TextInput style={styles.textInput} placeholder={"Company name"} />
-        <Text style={styles.textLeft}>Company type</Text>
-        <View style={styles.DropDown}>
-          <SelectList
-            setSelected={(val) => setSelected(val)}
-            data={companyType}
-            search={false}
-            boxStyles={{borderRadius:0}}
-            defaultOption={{ key: "2", value: "Private company limited by shares (LTD)" }}
-          />
-        </View>
-        {/* <TextInput style={styles.textInput} placeholder={"email"} />*/}
-        <View>
-          <Text style={styles.textLeft}>Vat Registered</Text>
-          <Switch
-            onValueChange={() => {
-              setIsEnabled(previousState => !previousState);
-            }}
-            value={isEnabled}
-          />
-        </View>
-      </View>
-      <View style={styles.signInView}>
-        <Button>Continue</Button>
-      </View>
-    </View>);
+    </View>
+  );
 };
-
-/*
-function SignInPressed() {
-  alert("pressed");
-}
-*/
-
-//export default LoginScreen;

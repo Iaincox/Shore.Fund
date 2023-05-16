@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {Constants} from './conststants';
 
 
+
+
 const Colors = {
   primary500: '#72063c',
   primary600: '#640233',
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
-    color: 'white',
+    color: Constants.ShureFundTitleTextColor,
     fontSize: 16,
     fontWeight: 'bold',
   },

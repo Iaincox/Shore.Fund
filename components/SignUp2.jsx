@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Switch } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 import Button from "./Button";
 
@@ -31,18 +31,18 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   textInput: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderWidth: 2,
     borderColor: "#cccccc",
     width: "90%",
     marginBottom: 15,
     fontSize: 20,
-    fontStyle: 'normal',
-    backgroundColor: 'white',
+    fontStyle: "normal",
+    backgroundColor: "white",
     padding: 5,
   },
   textLeft: {
-    color: 'grey',
+    color: "grey",
     marginBottom: 1,
     paddingBottom: 1,
   },
@@ -52,22 +52,22 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: "100%",
     height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   signInBtn: {
     backgroundColor: Constants.LogoColour,
   },
   DropDown: {
-    width: '90%',
+    width: "90%",
     marginBottom: 15,
   },
   progressStyle: {
 
     flex: 0.05,
-    flexDirection: 'row',
-    width: '90%',
-    alignItems: 'center',
+    flexDirection: "row",
+    width: "90%",
+    alignItems: "center",
     marginLeft: 15,
     marginBottom: 10,
   },
@@ -87,7 +87,7 @@ const companyType = [
 let Nav = null;
 
 export default function SignUpCompanyDetail({ navigation }) {
-  const [selectedCompanyType, setSelectedCompanyType] = useState('2');
+  const [selectedCompanyType, setSelectedCompanyType] = useState("2");
   const [vatRegistered, setVatRegistered] = useState(false);
 
   Nav = useNavigation();
@@ -109,7 +109,7 @@ export default function SignUpCompanyDetail({ navigation }) {
             setSelected={(val) => setSelectedCompanyType(val)}
             data={companyType}
             search={false}
-            boxStyles={{borderRadius:0}}
+            boxStyles={{ borderRadius: 0 }}
             defaultOption={{ key: "2", value: "Private company limited by shares (LTD)" }}
           />
         </View>
@@ -118,25 +118,20 @@ export default function SignUpCompanyDetail({ navigation }) {
           <Switch
             onValueChange={() => {
               setVatRegistered(previousState => !previousState);
-              console.log('Selected= ',vatRegistered);
+              console.log("Selected= ", vatRegistered);
             }}
             value={vatRegistered}
           />
         </View>
       </View>
-
       <View style={styles.signInView}>
         <Button onPress={VerifyId} >Complete</Button>
       </View>
+
     </View>);
 };
 
-function VerifyId(){
-  Nav.navigate('ID Verificaion');
+function VerifyId() {
+   Nav.navigate('ID Verificaion');
 }
 
-/*function SignInPressed() {
-  alert("pressed");
-}*/
-
-//export default LoginScreen;

@@ -5,6 +5,7 @@ export const Constants= {
   ScreenBackgroundColor: '#08126d',
   shorefundColor: '#08f7c9',
   ShureFundTitleTextColor: '#08126d',
+  lightGreyBackground: '#ebebeb',
   IconImage: require('../assets/Images/BannerLogo2.png'),
   BackgroundGreyImage: require('../assets/Images/Background_grey_cube.png'),
   BackgroundGreenImage: require('../assets/Images/Background_green.png'),
