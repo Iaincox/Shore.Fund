@@ -83,16 +83,12 @@ const companyType = [
   { key: "7", value: "Industrial and provident society (IPS)" },
   { key: "8", value: "Royal charter (RC)" },
 ];
-const switchHandler = () => {
-  console.log("Switch Handler", isEnabled());
-  setIsEnabled(true);
-};
 
 let Nav = null;
 
 export default function SignUpCompanyDetail({ navigation }) {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [selected, setSelected] = useState("2");
+  const [selectedCompanyType, setSelectedCompanyType] = useState('2');
+  const [vatRegistered, setVatRegistered] = useState(false);
 
   Nav = useNavigation();
 
@@ -110,7 +106,7 @@ export default function SignUpCompanyDetail({ navigation }) {
 
         <View style={styles.DropDown}>
           <SelectList
-            setSelected={(val) => setSelected(val)}
+            setSelected={(val) => setSelectedCompanyType(val)}
             data={companyType}
             search={false}
             boxStyles={{borderRadius:0}}
@@ -121,19 +117,23 @@ export default function SignUpCompanyDetail({ navigation }) {
           <Text style={styles.textLeft}>Vat Registered</Text>
           <Switch
             onValueChange={() => {
-              setIsEnabled(previousState => !previousState);
+              setVatRegistered(previousState => !previousState);
+              console.log('Selected= ',vatRegistered);
             }}
-            value={isEnabled}
+            value={vatRegistered}
           />
         </View>
       </View>
 
       <View style={styles.signInView}>
-        <Button onPress={Nav.navigate('LoginScreen')}>Complete</Button>
+        <Button onPress={VerifyId} >Complete</Button>
       </View>
     </View>);
 };
 
+function VerifyId(){
+  Nav.navigate('ID Verificaion');
+}
 
 /*function SignInPressed() {
   alert("pressed");
