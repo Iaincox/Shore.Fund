@@ -1,7 +1,7 @@
-import * as React from "react";
-import { View, Text, Image, StyleSheet, TextInput } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import SelectDropdown from 'react-native-select-dropdown'
+import React, {useState} from "react";
+import { View, Text,  StyleSheet, TextInput } from "react-native";
+//import { useNavigation } from '@react-navigation/native';
+//import SelectDropdown from 'react-native-select-dropdown'
 
 import Button from "./Button";
 
@@ -75,7 +75,10 @@ const styles = StyleSheet.create({
   }
 });
 export default function SignUp1({ navigation}) {
-  Nav = useNavigation();
+  const [phoneNo, setPhoneNo] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+//  Nav = useNavigation();
   return (
     <View style={styles.container}>
       <PageHeader2 />
@@ -88,54 +91,57 @@ export default function SignUp1({ navigation}) {
         <Text style={styles.textLeft} >Name</Text>
         <TextInput style={styles.textInput}
                    placeholder={"User name"}
-                   onChangeText={(value) =>{Name=value; console.log('Name=',Name);}} />
+                   onChangeText={(value) =>{setName(value); console.log('Name=',name);}} />
         <Text style={styles.textLeft}>Email</Text>
         <TextInput style={styles.textInput}
-                   placeholder={"email"}
+                   placeholder={'email'}
                    inputMode={"email"}
-                   onChangeText={(value) =>{Email=value; console.log('Email=',Email);}} />
+                   autoCorrect={false}
+                   onChangeText={(value) =>{setEmail(value); console.log('Email=',email);}} />
         <View>
           <Text style={styles.textLeft}>Telephone</Text>
-         {/* <SelectDropdown data={DialCodesArr.Code} onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index)
-          }}
-             />*/}
           <TextInput style={styles.textInput}
                      placeholder={"Telephone number"}
                      inputMode={"tel"}
-                     onChangeText={(value) =>{phone= value; console.log('Phone',phone);}
-          }/>
+                     keyboardType={'phone-pad'}
+                     onChangeText={(value) => {setPhoneNo(value);}}
+                     /*onChangeText={(value) =>{rphone= value; console.log('Phone',phone);}*/
+          />
 
         </View>
       </View>
       {/*<Button>Sign In</Button>*/}
       <View style={styles.signInView}>
-        <Button disable={true} onPress={continuePressed}>Continue</Button>
+        <Button disable={true} onPress={() => {
+          if (name ===''){
+            alert('Name cannot be left blank!');
+            return;
+          }
+          if(email ===''){
+            alert('An email address must be provided');
+            return;
+          }
+          if (phoneNo===''){
+            alet('A Phone number must be provided for the account');
+            return;
+          }
+          navigation.navigate('Company Detail');
+        }}>
+          Continue
+        </Button>
       </View>
     </View>);
 };
 
-let Name='';
-let Email = '';
-let phone = '';
-let Nav = null;
-function continuePressed(){
-  if (Name ===''){
-    alert('Name cannot be left blank!');
-    return;
-  }
-  if(Email ===''){
-    alert('An email address must be provided');
-    return;
-  }
-  if (phone===''){
-    alet('A Phone number must be provided for the account');
-    return;
-  }
-//  navigation.replace('nextScreen')
-  console.log('Navigating to ', 'Company Detail');
-  Nav.navigate('Company Detail')
-}
+//let Name='';
+////let Email = '';
+//let phone = '';
+//let Nav = null;
+
+/*function validatePhone(e) {
+  e.target.value
+}*/
+
 /*function SignInPressed(){
   alert("pressed");
 }*/
