@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, Switch } from "react-native";
+import { View, Text, StyleSheet, TextInput, Switch, SafeAreaView } from "react-native";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from "@react-navigation/native";
 
@@ -93,7 +93,7 @@ export default function SignUpCompanyDetail({ navigation }) {
   Nav = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <PageHeader2 />
       <View style={styles.progressStyle}>
         <Progress.Bar progress={0.5} height={10} width={325} color={Constants.ScreenBackgroundColor} />
@@ -128,7 +128,7 @@ export default function SignUpCompanyDetail({ navigation }) {
         <Button onPress={VerifyId} >Complete</Button>
       </View>
 
-    </View>);
+    </SafeAreaView>);
 };
 
 function VerifyId() {

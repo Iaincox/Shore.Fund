@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text,  StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, SafeAreaView } from "react-native";
 //import { useNavigation } from '@react-navigation/native';
 //import SelectDropdown from 'react-native-select-dropdown'
 
@@ -72,7 +72,13 @@ const styles = StyleSheet.create({
    //backgroundColor: 'red',
     marginLeft: 15,
     marginBottom: 10,
-  }
+  },
+  bttnView: {
+    flex: 1,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
 });
 export default function SignUp1({ navigation}) {
   const [phoneNo, setPhoneNo] = useState('');
@@ -80,7 +86,7 @@ export default function SignUp1({ navigation}) {
   const [name, setName] = useState('');
 //  Nav = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <PageHeader2 />
     {/*  <ProgressBar progress={0.25}/>*/}
       <View style={styles.progressStyle}>
@@ -111,7 +117,7 @@ export default function SignUp1({ navigation}) {
         </View>
       </View>
       {/*<Button>Sign In</Button>*/}
-      <View style={styles.signInView}>
+      <View style={styles.bttnView}>
         <Button disable={true} onPress={() => {
           if (name ===''){
             alert('Name cannot be left blank!');
@@ -130,7 +136,7 @@ export default function SignUp1({ navigation}) {
           Continue
         </Button>
       </View>
-    </View>);
+    </SafeAreaView>);
 };
 
 //let Name='';

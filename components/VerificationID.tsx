@@ -1,11 +1,25 @@
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Alert,
+  SafeAreaView,
+} from 'react-native';
 import PageHeader2 from './PageHeader2';
 //import Progress from 'react-native-progress';
 import {Constants} from './conststants';
-import React from 'react';
+
 import * as Progress from 'react-native-progress';
-import Button from "./Button";
-import { useNavigation } from "@react-navigation/native";
+import Button from './Button';
+/*import React, { useRef } from "react";*/
+/*import type { PropsWithChildren } from "react";*/
+
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faMugSaucer} from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+
+import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,14 +87,17 @@ const styles = StyleSheet.create({
     backgroundColor: Constants.lightGreyBackground,
     width: '90%',
   },
+  pressStyle: {
+    flex: 1,
+  },
 });
 
 let Nav = null;
 
 export default function VerificationID({navigation}) {
-    Nav = useNavigation();
+  Nav = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <PageHeader2 />
       <View style={styles.progressStyle}>
         <Progress.Bar
@@ -102,7 +119,14 @@ export default function VerificationID({navigation}) {
         </Text>
 
         <View style={styles.govID}>
-          <Text style={styles.textLeft}>Government ID</Text>
+          <FontAwesomeIcon icon={faMugSaucer} />
+          <Pressable
+            style={styles.pressStyle}
+            onPress={() => {
+              Alert.alert('Hi There');
+            }}>
+            <Text style={styles.textLeft}>Government ID</Text>
+          </Pressable>
         </View>
         <Text style={styles.textLeft}>
           Take a photo or use you devices camera to upload a picture of your
@@ -117,12 +141,12 @@ export default function VerificationID({navigation}) {
         </Text>
       </View>
       <View style={styles.signInView}>
-        <Button onPress={thankyou} >Complete</Button>
+        <Button onPress={thankyou}>Complete</Button>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
-function thankyou(){
+function thankyou() {
   Nav.navigate('Thank you');
 }

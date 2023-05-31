@@ -1,23 +1,26 @@
 import * as React from 'react';
-import { StyleSheet } from "react-native";
+/*import {StyleSheet} from 'react-native';*/
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Constants } from './components/conststants';
+/*import { Constants } from './components/conststants';*/
 import LoginScreen from './components/LoginScreen';
 import SignUp1 from './components/SignUp1';
 import Splash from './components/splash';
 import SignUpCompanyDetail from './components/SignUp2';
 import VerificationID from './components/VerificationID';
-import Thankyou from './components/thankYou';
-import ThankYou from "./components/thankYou";
+/*import Thankyou from './components/thankYou';*/
+import ThankYou from './components/thankYou';
+import AccountSetup from "./Screens/AccountSetup";
+import AccountVerify from "./Screens/AccountVerify";
 //import IdVerification from "./components/id-verification";
 //const LogoColour = '#08f7c9';
 //const ScreenBackgroundColor = '#08126d';
 //const BackgroundGreyImage = require('./assets/Images/Background_grey_cube.png');
 
+/*
 const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink',
   },
 });
+*/
 
 //initialRouteName={ getData('@Registered')===1 ? "LoginScreen" : "RegisterScreen"  }
 
@@ -58,9 +62,9 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={'Splash'}
-      >
+      <Stack.Navigator initialRouteName={'AccountSetup'}>
+        <Stack.Screen name="AccountSetup" component={AccountSetup} />
+        <Stack.Screen name="AccountSetupVerify" component={AccountVerify} />
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="Sign Up" component={SignUp1} />
         <Stack.Screen name="Company Detail" component={SignUpCompanyDetail} />
@@ -70,7 +74,6 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
-
+};
 
 export default App;

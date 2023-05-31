@@ -1,12 +1,11 @@
 import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
 import PageHeader2 from './PageHeader2';
 //import Progress from 'react-native-progress';
-import { Constants } from './conststants';
+import {Constants} from './conststants';
 import React from 'react';
 import * as Progress from 'react-native-progress';
 import Button from './Button';
-import { useNavigation } from '@react-navigation/native';
-import PageHeader from "./PageHeader";
+import {useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   container: {
